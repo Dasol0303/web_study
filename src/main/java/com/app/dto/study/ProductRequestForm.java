@@ -1,6 +1,6 @@
 package com.app.dto.study;
 
-public class ProductRequsetForm {
+public class ProductRequestForm {
 	//Product로 옮기나?
 	
 	public String id;

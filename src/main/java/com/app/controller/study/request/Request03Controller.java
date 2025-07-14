@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.dto.study.Product;
-import com.app.dto.study.ProductRequsetForm;
+import com.app.dto.study.ProductRequestForm;
 
 @Controller
 @RequestMapping("/request03")
@@ -122,7 +122,7 @@ public class Request03Controller {
 
 	@PostMapping("/param8")		// POST 쓰기/데이터 전달  실제 데이터를 전달 받아서 로직 처리
 	//public String param8Action(@ModelAttribute Product product) { //  xxxxAction / xxxxProcess 라는 이름 자주사용!
-	public String param8(@ModelAttribute ProductRequsetForm productReuwstForm) {	
+	public String param8(@ModelAttribute ProductRequestForm productReuwstForm) {	
 		System.out.println("/request03/param8 POST 요청");
 
 		//System.out.println(product);
