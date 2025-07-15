@@ -12,24 +12,17 @@
 
 	<h1>Prac07</h1>
 
-	<c:if test="${type == 'str'}">
+	<c:if test="${type=='str'}">
 		<c:forEach var="i" begin="1" end="10" step="1">
-			${msg}
-			<br>
+			<p>${msg}</p>
 		</c:forEach>
 	</c:if>
 
-
-	<c:if test="${type == 'member'}">
-		<c:forEach var="p" items="${member}">
-			${p.id} ${p.password} ${p.name} <br>
+	<c:if test="${type=='member'}">
+		<c:forEach var="member" items="${memberList}">
+			<p>${member.id}${member.pw} ${member.name}</p>
 		</c:forEach>
 	</c:if>
-
-
-
-
-
 
 
 </body>
