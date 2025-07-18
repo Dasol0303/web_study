@@ -3,4 +3,32 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- ioc 컨테이너에 빈 등록 => Impl 파일에 @Service 같은 어노테이션을 안붙여주고 여기에서 처리하는 방식!!-->
+	
+	<!-- roomDAO 빈 등록 -->
+	
+	<!-- RoomDAO roomDAO = new RoomDAOImpl(); -->
+	<!-- <bean id="roomDAO" class="com.app.dao.room.impl.RoomDAOImpl"></bean> -->
+
+
+	<!-- RoomService 등록 -->
+	
+	<!-- RoomService roomService = new RoomServiceImpl(); -->
+	<!-- <bean id="roomService" class="com.app.service.room.impl.RoomServiceImpl"> -->
+		<!-- 생성자를 통한 의존성 주입 -->
+		<!-- RoomService roomService = new RoomServiceImpl(roomDAO); -->
+		<!-- <constructor-arg ref="roomDAO"></constructor-arg> -->
+		
+		<!-- setter 메소드를 통한 의존성 주입 -->
+		<!-- 
+			RoomService roomService = new RoomServiceImpl(roomDAO); 
+			roomService.setRoomDAO(roomDAO);
+		-->
+		<!-- <property name="roomDAO" ref="roomDAO"></property> -->
+		
+	<!-- </bean> -->
+	
+
 </beans>

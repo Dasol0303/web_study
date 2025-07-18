@@ -16,8 +16,25 @@ public class RoomServiceImpl implements RoomService{
 	@Autowired	//이걸 쓸 수 있게 내 손에 쥐여주는 용도!!
 	RoomDAO roomDAO;
 	
+	/*
+	//생성자를 통한 주입
+	public RoomServiceImpl(RoomDAO roomDAO) {
+		this.roomDAO = roomDAO;
+	}
+	*/
+	
+	/*
+	//setter 메소드를 통한 주입
+	public void setRoomDAO(RoomDAO roomDAO) {
+		this.roomDAO = roomDAO;
+	}
+	*/
+	
+	
 	@Override
 	public List<Room> findRoomList() {
+		
+		System.out.println("[Service] 호출 findRoomList");
 		
 		//서비스 로직 ...(DAO 써먹기!!)
 		// ...

@@ -17,9 +17,13 @@ public class RoomController {
 	RoomService roomService;
 	//스프링이 관리하는 RoomService를 주입받아서 사용하겠다.
 	
+	
 	//모든 보유 호실정보를 보여주는 요청
 	@GetMapping("/rooms")
 	public String rooms(Model model) {
+		
+		System.out.println("[Controller] 호출 /rooms 경로");
+		//출력 이유 : 밑에 적은 List<Room> roomList = roomService.findRoomList(); => 요 경로가 어디를 타고 타는지 흐름을 확인하기 위함!!
 		
 		//호실정보
 		
