@@ -14,7 +14,7 @@ import lombok.ToString;
 //@AllArgsConstructor
 
 @Data
-public class Room {
+public class Room { 
 
 	int roomId;		//PK 기본키 식별자
 	String buildingName;	//동 이름	101	A B 301
