@@ -12,4 +12,6 @@ public interface UserService {
 	public int saveAdminUser(User user);
 	public int saveCustomerUser(User user);
 	
+	List<User> findUserList();
+	
 }

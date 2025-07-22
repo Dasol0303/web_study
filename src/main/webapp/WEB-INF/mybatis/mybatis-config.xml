@@ -6,13 +6,13 @@
 
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true" />
-		<setting name="jdbcTypeForNull" value="Null" />
+		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	
 	
 
 
-<!-- 	<typeAliases>
+<!-- <typeAliases>
 		<typeAlias type="com.rsrvapp.dto.user.User" alias="User" />
 		<typeAlias type="com.rsrvapp.dto.user.UserSearchCondition" alias="UserSearchCondition"/>
 	</typeAliases> -->

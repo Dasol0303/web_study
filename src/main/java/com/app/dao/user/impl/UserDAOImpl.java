@@ -26,6 +26,15 @@ public class UserDAOImpl implements UserDAO{
 		
 		return result;
 	}
+
+
+	@Override
+	public List<User> findUserList() {
+		
+		List<User> userList = sqlSessionTemplate.selectList("user_mapper.findUserList");
+		
+		return userList;
+	}
 	
 	
 }

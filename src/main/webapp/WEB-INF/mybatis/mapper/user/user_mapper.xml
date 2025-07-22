@@ -6,12 +6,16 @@
 <mapper namespace="user_mapper">
 	
 	<insert id="saveUser" parameterType="User">
-		INSERT INTO T_USER  VALUES ( 
+		INSERT INTO T_USER VALUES ( 
 				#{id},
 				#{pw},
 				#{name}, 
 				#{userType} )
 	</insert>
+	
+	<select id="findUserList" resultType="com.app.dto.user.User">
+		select * from t_user
+	</select>
 	
 	
 </mapper>

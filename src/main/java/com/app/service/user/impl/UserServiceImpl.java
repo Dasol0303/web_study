@@ -46,6 +46,15 @@ public class UserServiceImpl implements UserService{
 		
 		return result;
 	}
+
+
+	@Override
+	public List<User> findUserList() {
+		
+		List<User> userList = userDAO.findUserList();
+		
+		return userList;
+	}
 	
 	
 	

@@ -19,7 +19,7 @@
 
 		<select name="userType">
 			<option value="ADM">관리자</option>
-			<option value=" CUS" selected>사용자</option>
+			<option value="CUS" selected>사용자</option>
 		</select> <br>
 
 		<button type="submit">User 정보 등록</button>

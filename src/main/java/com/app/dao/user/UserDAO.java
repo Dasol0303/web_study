@@ -9,4 +9,5 @@ public interface UserDAO {
 	
 	public int saveUser(User user);
 
+	List<User> findUserList();
 }

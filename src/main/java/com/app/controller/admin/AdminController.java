@@ -66,7 +66,7 @@ public class AdminController {
 	public String addUser() {
 		//화면 연결
 		
-		return "admin/users/add";
+		return "admin/add";
 	}
 	
 	/*
@@ -82,11 +82,11 @@ public class AdminController {
 		System.out.println(result);
 		
 		if(result > 0) { //정상적으로 저장 성공
-			return "redirect:/admin/users";
+			return "redirect:/admin/add";
 		} else { //저장 실패
-			return "admin/users/add";
+			return "admin/add";
 		}
-//		return "admin/users/add";
+//		return "admin/add";
 	}
 	*/
 	@PostMapping("/admin/users/add")
@@ -107,12 +107,23 @@ public class AdminController {
 		//Customer 사용자 저장용 서비스 메소드 활용
 		int result = userService.saveCustomerUser(user);
 		
-		//if(result > 0) //정상처리 작동
+		//if(result > 0) //정상 저장 처리
 
-		return "admin/users/add";
+		return "admin/add";
 	}
 	
-	
+	@GetMapping("/admin/users")
+	public String users (Model model) {
+		
+		
+		List<User> userList = userService.findUserList();
+		
+		//System.out.println(userList.toString());
+		
+		model.addAttribute("userList", userList);
+		
+		return "admin/users";
+	}
 	
 	
 }
