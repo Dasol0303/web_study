@@ -1,16 +1,54 @@
 package com.app.service.user.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.user.UserDAO;
+import com.app.dto.room.Room;
+import com.app.dto.user.User;
 import com.app.service.user.UserService;
 
-@Service
+@Service	//Bean 등록이 됨!! Service 어노테이션을 붙였기 때문에!!
 public class UserServiceImpl implements UserService{
 
 	@Autowired
 	UserDAO userDAO;
+	
+
+	@Override
+	public int saveUser(User user) {
+		
+		int result = userDAO.saveUser(user);
+		
+		return result;
+	}
+
+
+	@Override
+	public int saveAdminUser(User user) {
+		//관리자 계정 추가 할때 필요한 체크 로직....
+		
+		user.setUserType("ADM");
+		int result = userDAO.saveUser(user);
+		
+		return result;
+	}
+
+
+	@Override
+	public int saveCustomerUser(User user) {
+		//사용자 계정 추가 할때 필요한 체크 로직....
+		
+		user.setUserType("CUS");
+		int result = userDAO.saveUser(user);
+		
+		return result;
+	}
+	
+	
+	
 	
 	
 	

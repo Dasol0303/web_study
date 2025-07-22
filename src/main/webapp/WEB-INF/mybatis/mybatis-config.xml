@@ -6,7 +6,10 @@
 
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="jdbcTypeForNull" value="Null" />
 	</settings>
+	
+	
 
 
 <!-- 	<typeAliases>
@@ -17,6 +20,7 @@
 
 	<typeAliases>
 		<typeAlias type="com.app.dto.room.Room" alias="Room" />
+		<typeAlias type="com.app.dto.user.User" alias="User" />
 	</typeAliases>
 
 </configuration>
