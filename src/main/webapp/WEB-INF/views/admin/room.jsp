@@ -21,6 +21,9 @@
 
 	</p>
 	
+	<br>
+	<button type="button">객실 추가</button>
+	
 	<div>
 		<button type="button" onClick="location.href='/admin/rooms'">객실 목록보기</button>
 	</div>

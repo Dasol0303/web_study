@@ -12,4 +12,7 @@ public interface RoomDAO {
 	
 	//하나의 리턴타입이 나올거라서 Room!
 	Room findRoomByRoomId(int roomId);
+
+	int removeRoom(int roomId);
+	
 }
