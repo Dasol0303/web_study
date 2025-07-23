@@ -16,6 +16,19 @@
 	<select id="findUserList" resultType="com.app.dto.user.User">
 		select * from t_user
 	</select>
+										<!-- parameterType="User" => 문자열 값으로 id만 받아서 넘기겠다는 의미 -->
+	<select id="findUserById" resultType="User" parameterType="String"> <!-- parameterType="User"도 가능! -->
+		SELECT *
+		FROM T_USER
+		WHERE id = #{id}
+	</select>
 	
+	
+<!-- 	<select id="checkUserLogin" resultType="User" parameterType="User">
+		SELECT *
+		FROM T_USER
+		WHERE 
+		id = #{id} AND pw = #{pw} AND user_type = #{userType}
+	</select> -->
 	
 </mapper>

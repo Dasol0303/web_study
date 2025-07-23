@@ -12,6 +12,10 @@ public interface UserService {
 	public int saveAdminUser(User user);
 	public int saveCustomerUser(User user);
 	
-	List<User> findUserList();
+	public List<User> findUserList();
+	
+	public User findUserById(String id);
+	
+	public User checkUserLogin(User user);
 	
 }
