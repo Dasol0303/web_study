@@ -29,7 +29,8 @@
 	<form action="/admin/users/add" method="post">
 	
 		사용자 아이디 : <input type="text" name="id"> <br> 
-		사용자 이름 : <input type="text"name="name"> <br>
+		<!-- 사용자 이름 : <input type="text"name="name"> <br> -->
+		사용자 pw : <input type="text"name="pw"> <br>
 
 	<button type="submit">User 정보 등록</button>
 	</form>

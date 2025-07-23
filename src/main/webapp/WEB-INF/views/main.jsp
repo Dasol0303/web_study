@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>Main</h1>
+	
+	<button onClick="location.href='/customer/signup'">회원가입</button>
 </body>
 </html>
