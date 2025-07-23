@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService{
 
 		//id pw 일치하는가?
 
-
+		/*
 		//case 1) DB에서 정보를 조회 한 후 -> Service Layer 상태에서 비교하는 로직을 수행!
 
 		//사용자 정보를 조회해서, id pw 맞나 확인
@@ -94,7 +94,7 @@ public class UserServiceImpl implements UserService{
 		//	  return user 객체 ? -> 맞다! 
 
 		return null;
-
+		*/
 
 		/*
  			return 의미가 담긴 코드 (SUC, FAL, LCK)... 
@@ -103,13 +103,13 @@ public class UserServiceImpl implements UserService{
 		  	=> 를 정해줘서 사용 가능
 		 */
 
+		
+		//case 2) DB에서 쿼리를 통해, 정상여부 체크 로직 수행
+		// userDAO.checkUserLogin -> sql query 상에서 id, pw, userType 동일한 경우를 체크
 
-//		//case 2) DB에서 쿼리를 통해, 정상여부 체크 로직 수행
-//		// userDAO.checkUserLogin -> sql query 상에서 id, pw, userType 동일한 경우를 체크
-//
-//		User loginUser = userDAO.checkUserLogin(user);
-//		
-//		return loginUser;
+		User loginUser = userDAO.checkUserLogin(user);
+		
+		return loginUser;
 
 	}
 
