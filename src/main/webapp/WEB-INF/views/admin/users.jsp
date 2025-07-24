@@ -13,9 +13,12 @@
 	
 	<c:forEach var="user" items="${userList}">
 	
-		<p>ID : ${user.id} | PW : ${user.pw} | Name : ${user.name} | UserType : 
-			<c:if test="${user.userType == 'ADM'}">관리자</c:if>
-			<c:if test="${user.userType == 'CUS'}">사용자</c:if>
+		<p>
+			<a href="/admin/user/${user.id}">
+				ID : ${user.id} | PW : ${user.pw} | Name : ${user.name} | UserType : 
+				<c:if test="${user.userType == 'ADM'}">관리자</c:if>
+				<c:if test="${user.userType == 'CUS'}">사용자</c:if>
+			</a>
 		</p>
 		
 		
