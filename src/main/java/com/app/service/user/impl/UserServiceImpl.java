@@ -114,6 +114,15 @@ public class UserServiceImpl implements UserService{
 	}
 
 
+	@Override
+	public int modifyUserPw(User user) {
+		
+		int result = userDAO.modifyUserPw(user);
+		
+		return result;
+	}
+
+
 
 
 
