@@ -40,7 +40,7 @@
 	
 	
 	<update id="modifyUser" parameterType="User">
-				UPDATE T_USER
+		UPDATE T_USER
 		SET 
 			pw = #{pw},
 			name = #{name},
@@ -49,6 +49,103 @@
 	</update>
 	
 	
+	<!-- 동적으로 선택이 되는 쿼리 형태 -->
+	<select id="findUserListBySearchCondition" resultType="User" parameterType="UserSearchCondition">
+		SELECT *
+		FROM T_USER
+		<where>
+			<if test=" (id != null and id != '') or (name != null and name != '') ">
+				(
+					<!-- trim prefixOverrides="OR" => 맨 앞이 빈공간이면 OR을 지워주겠다? -->
+					<trim prefixOverrides="OR">
+						<if test="id != null and id != ''">
+							id LIKE '%' || #{searchKeyword} || '%'
+						</if>
+						<if test="name != null and name != ''">
+							OR name LIKE '%' || #{searchKeyword} || '%'
+						</if>
+					</trim>
+				)
+			</if>
+			<if test="userType != null and userType != ''">
+				AND user_type = #{userType}
+			</if>
+		</where>
+		
+<!-- 		
+		SELECT *
+		FROM T_USER
+		<where>
+			<if test=" (id != null and id != '') or (name != null and name != '') ">
+				(
+					<if test="id != null and id != ''">
+						id LIKE '%' || #{searchKeyword} || '%'
+					</if>
+					<if test="name != null and name != ''">
+					
+						<if test="id != null and id != ''">
+							OR name LIKE '%' || #{searchKeyword} || '%'
+						</if>
+						<if test="id == null or id == ''">
+							name LIKE '%' || #{searchKeyword} || '%'
+						</if>
+						
+					</if>
+				)
+			</if>
+			<if test="userType != null and userType != ''">
+				AND user_type = #{userType}
+			</if>
+		</where>
+		 -->
+		
+<!-- 		
+		SELECT *
+		FROM T_USER
+		<where>
+			<if test="id != null and id != ''">
+				AND id LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="name != null and name != ''">
+				AND name LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="userType != null and userType != ''">
+				AND user_type = #{userType}
+			</if>
+		</where>
+		 -->
+	
+<!-- 	
+		SELECT *
+		FROM T_USER
+		WHERE 
+			1=2
+			<if test="id != null and id != ''">
+				OR id LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="name != null and name != ''">
+				OR name LIKE '%' || #{searchKeyword} || '%'
+			</if>
+	 -->
+	
+<!-- 	
+		SELECT *
+		FROM T_USER
+		WHERE 
+			1=1
+			<if test="id != null and id != ''">
+				AND id LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="name != null and name != ''">
+				AND name LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="userType != null and userType != ''">
+				AND user_type = #{userType}
+			</if>
+	WHERE 1=1 => 싹 다 조회! => if 문에서 AND가 WHERE바로 뒤에 붙지 않도록 안전빵 코드!
+	쿼리 안의 if문 안에는 test="#{}" 샾 안써도 됨! -->
+	
+	</select>
 </mapper>
 
 
