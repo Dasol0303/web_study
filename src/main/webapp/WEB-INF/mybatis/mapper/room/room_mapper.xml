@@ -27,6 +27,11 @@
 		where room_id = #{roomId}
 	</select>
 	
+	<select id="findRoomByRoomBuildingName" resultType="Room" parameterType="String">
+		SELECT * FROM T_ROOM
+		where building_name = #{buildingName}
+	</select>
+	
 	
 	<delete id="removeRoom" parameterType="int">
 		DELETE FROM T_ROOM
@@ -43,5 +48,22 @@
 			view_type = #{viewType}
 		WHERE room_id = #{roomId}
 	</update>
+	
+	<select id="findRoomListBySearchCondition" resultType="Room" parameterType="RoomSearchCondition">
+		SELECT * 
+		FROM T_ROOM
+		<where>
+			<if test=" searchKeyword != null and searchKeyword != '' ">
+				buildingName LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="viewType != null and viewType != ''">
+				AND view_type = #{viewType}
+			</if>
+		</where>
+		ORDER BY room_id
+	
+	</select>
+	
 	
 </mapper>

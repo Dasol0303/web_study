@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.dao.room.RoomDAO;
 import com.app.dto.room.Room;
+import com.app.dto.room.RoomSearchCondition;
 import com.app.service.room.RoomService;
 
 @Service	//서비스로 등록해서 관리해줄게!! 긍까 적어두셈..ㅠ
@@ -77,6 +78,20 @@ public class RoomServiceImpl implements RoomService{
 		int result = roomDAO.modifyRoom(room);
 		
 		return result;
+	}
+
+	@Override
+	public List<Room> findRoomListBySearchCondition(RoomSearchCondition roomSearchCondition) {
+		
+		List<Room> roomList = roomDAO.findRoomListBySearchCondition(roomSearchCondition);
+		
+		return roomList;
+	}
+
+	@Override
+	public Room findRoomByRoomBuildingName(String buildingName) {
+		Room room = roomDAO.findRoomByRoomBuildingName(buildingName);
+		return room;
 	}
 	
 
