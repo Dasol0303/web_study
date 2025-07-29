@@ -12,6 +12,9 @@ import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 import com.app.service.user.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service	//Bean 등록이 됨!! Service 어노테이션을 붙였기 때문에!!
 public class UserServiceImpl implements UserService{
 
@@ -35,6 +38,7 @@ public class UserServiceImpl implements UserService{
 		//user.setUserType("ADM");
 		user.setUserType( CommonCode.USER_USERTYPE_ADMIN );
 		int result = userDAO.saveUser(user);
+		log.info("saveAdminUser 관리자 계정 추가 : {}", user);
 
 		return result;
 	}
