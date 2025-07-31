@@ -27,7 +27,7 @@ public class UserValidator implements Validator{
 			errors.rejectValue("id", "InvalidUserId", "이건 아이디로 쓰면 안됨");
 		}
 		
-		if(user.getId().length() < 2 || user.getId().length() > 15) {
+		if(user.getPw().length() < 8 || user.getPw().length() > 12) {
 			errors.rejectValue("pw", "SizeUserPw", "비번은 8~12 제한이요");
 		}
 		
