@@ -22,7 +22,6 @@ user_type VARCHAR(8) NOT NULL
 
 
 
-
 CREATE TABLE T_LIBRARY (
 	id NUMBER Primary key,
 	title VARCHAR2(255) NOT NULL,
@@ -34,3 +33,27 @@ CREATE SEQUENCE SEQ_T_LIBRARY_PK
 START WITH 1
 INCREMENT BY 1
 NOCYCLE;
+
+
+
+CREATE TABLE FILE_INFO (
+	file_name VARCHAR2(256),
+	original_file_name VARCHAR2(256),
+	file_path VARCHAR2(256),
+	url_file_path VARCHAR2(256)
+);
+
+
+CREATE TABLE USER_PROFILE_IMAGE (
+    id VARCHAR2(32 BYTE),
+    file_name VARCHAR2(256)
+);
+
+
+
+
+
+
+
+
+
