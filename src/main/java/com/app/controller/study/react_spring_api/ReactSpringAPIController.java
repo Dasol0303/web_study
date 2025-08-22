@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.study.DrinkItem;
 import com.app.dto.study.Member;
+import com.app.util.JwtProvider;
 import com.app.util.LoginManager;
 
 @RestController
@@ -82,42 +83,91 @@ public class ReactSpringAPIController {
 		return drinkList;
 	}
 	
+	// 로그인
+		@PostMapping("/api/login")
+		public String login(@RequestBody Member member, HttpServletRequest request) {
+
+			System.out.println(member.getId());
+			System.out.println(member.getPw());
+
+			// id pw 값 -> DB 사용자 계정정보 비교 
+			// -> 서비스 -> DAO ->
+
+			// 로그인 성공  return "ok"
+			// 로그인 실패  return "no"
+			// return apiResponse  (header, body)
+			// 1 2 3 4  resultCode...
+
+			// 로그인 성공으로 간주 -> ok 
+
+			// Session 로그인 여부 처리
+			LoginManager.setSessionLoginUserId(request, member.getId());
+
+			return "ok";
+		}
+
+
+		@PostMapping("/api/loginCheck")
+		public String loginCheck(HttpServletRequest request) {
+
+			if(LoginManager.isLogin(request)) {
+				String loginId = LoginManager.getLoginUserId(request);
+				System.out.println(loginId);
+				return "login user : " + loginId;
+			} else {
+				return "Not Login";
+			}
+		}
 	
-	
-	//로그인
-	@PostMapping("/api/login")
-	public String login(@RequestBody Member member, HttpServletRequest request) {
+	@PostMapping("/api/loginJWT")
+	public String loginJWT(@RequestBody Member member, HttpServletRequest request) {
+		
+		//JWT  JSON Web Token   (인증 정보를 담은 토큰(문자열))
 		
 		System.out.println(member.getId());
 		System.out.println(member.getPw());
 		
-		// id pw 값 -> DB 사용자 계정정보 비교
-		//-> 서비스 -> DAO -> 
+		// 계정 정보 확인 -> DB 비교 -> 성공? 실패?
+		// 로그인 성공으로 간주
 		
-		// 로그인 성공  return "ok"
-		// 로그인 실패  return "no"
-		// return apiResponse  (header, body)
-		// 1 2 3 4 resultCode...
+		//JWT AccessToken 발행 -> 전달
+		String accessToken = JwtProvider.createAccessToken(member.getId());
+		System.out.println("로그인한 아이디 : " + member.getId());
+		System.out.println("발행하는 JWT accessToken : " + accessToken);
 		
-		// 로그인 성공으로 간주 -> ok
+		// 토큰을 return -> API 를 호출한 사용자에게 응답 
+		return accessToken;
 		
-		// Session 로그인 여부 처리
-		LoginManager.setSessionLoginUserId(request, member.getId());
-		
-		return "ok";
 	}
 	
-	
-	@PostMapping("/api/loginCheck")
-	public String loginCheck(HttpServletRequest request) {
+	@PostMapping("/api/loginCheckJWT")
+	public String loginCheckJWT(HttpServletRequest request) {
+		//token을 가져와서 -> 유효한 토큰인지 체크 -> 맞으면 누가 로그인했는지 id 확인
+		// ---> 필요한 로직 수행 (id기반으로 DB조회) ㅇㅇㅇㅇ처리 -> return 
 		
-		if(LoginManager.isLogin(request)) {
-			String loginId = LoginManager.getLoginUserId(request);
-			System.out.println(loginId);
-			return "login user : " +loginId;
-		} else {
-			return "Not Login";
+		String accessToken = JwtProvider.extractToken(request);
+		
+		System.out.println("request에서 추출한 토큰 값 : " + accessToken);
+		
+		if(accessToken == null) { //인증 토큰 정보가 포함되지 않은 요청
+			return "no"; //응답코드 , ApiResponse 
 		}
+		
+		//토큰 검증
+		
+		//토큰이 유효한 토큰인지 확인    true/false
+		System.out.println(JwtProvider.isVaildToken(accessToken));  
+		
+		//유효한 토큰이면? 그 토큰안에 저장된 사용자 id를 확인해 볼 수 있다
+		if(JwtProvider.isVaildToken(accessToken)) {
+			String userId = JwtProvider.getUserIdFromToken(accessToken);
+			
+			System.out.println("토큰에서 추출한 사용자id : " + userId);
+			
+			return "login user : " + userId;
+		} 
+		
+		return "no" ;
 	}
 	
 }
